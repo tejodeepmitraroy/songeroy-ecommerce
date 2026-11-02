@@ -1,0 +1,34 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { getBestsellers } from "@/data/products";
+import { ProductGrid } from "@/components/products/ProductGrid";
+
+export function BestSellersSection() {
+  const bestsellers = getBestsellers().slice(0, 4);
+
+  return (
+    <section className="py-16 sm:py-20 bg-white border-y border-neutral-200/80">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col sm:flex-row items-baseline justify-between mb-8 pb-4 border-b border-neutral-200">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-widest text-[#F95721]">
+              Customer Favorites
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 mt-1">
+              Best Sellers
+            </h2>
+          </div>
+          <Link
+            href="/shop"
+            className="text-xs font-semibold text-neutral-600 hover:text-neutral-950 inline-flex items-center gap-1 mt-2 sm:mt-0 transition-colors"
+          >
+            Explore All <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        </div>
+
+        <ProductGrid products={bestsellers} columns={4} />
+      </div>
+    </section>
+  );
+}
+
